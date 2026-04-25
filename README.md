@@ -77,7 +77,7 @@ bool at24c_read(AT24C* chip, uint8_t reg, uint8_t* dest, uint8_t length)
 ```
 
 `chip` is the pointer to your AT24C struct.  
-`reg` is the register where you want to read the first byte of your data. From 0x00 to 0x7F for AT24C01 and 0x00-0xFF for AT24C02.  
+`reg` is the register where you want to read the first byte of your data. Up to `0x7F` for AT24C01 and `0xFF` for AT24C02.  
 `dest` is the pointer to your buffer which store data.  
 `length` is the length of data you want to read.
 
