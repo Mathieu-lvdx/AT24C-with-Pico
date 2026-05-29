@@ -36,19 +36,23 @@ bool at24c_write(AT24C* chip, uint8_t reg, uint8_t* value, uint8_t length) {
         uint8_t empty_space = chip->page_size - (reg + index) % chip->page_size;
         uint8_t* tx_buffer;
         uint8_t size;
+
         if(length - index > empty_space) {
             tx_buffer = (uint8_t*)malloc(1 + empty_space);
             size = empty_space;
-        }
-        else {
+        } else {
             tx_buffer = (uint8_t*)malloc(1 + length - index);
             size = length - index;
         }
+
+        if(tx_buffer == NULL) return false;
+
         tx_buffer[0] = reg + index;
         for(uint8_t i=0; i<size; i++) {
             tx_buffer[i+1] = value[index];
             index ++;
         }
+
         i2c_write_blocking(I2C_PORT, chip->address, tx_buffer, size+1, false);
         free(tx_buffer);
         sleep_ms(5);
