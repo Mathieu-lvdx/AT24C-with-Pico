@@ -83,7 +83,7 @@ bool at24c_read(AT24C* chip, uint8_t reg, uint8_t* dest, uint8_t length)
 
 ## Code sample
 
-This code initializes an AT24C02, write `Hello world !` at register 0x00 and read it.
+This code initializes an AT24C02, writes `Hello world !` at register 0x00 and reads it.
 
 ```c
 // This code comes from example.c
